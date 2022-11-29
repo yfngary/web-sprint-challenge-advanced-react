@@ -23,6 +23,8 @@ export default function AppFunctional(props) {
       x: 2,
       y: 2
     })
+    const emailInput = document.getElementById('email');
+    emailInput.value = '';
   }
 
   // rightMoveFunction = (index) => {
@@ -78,7 +80,7 @@ export default function AppFunctional(props) {
         steps: state.steps + 1,
         x: state.x + 1,
         y: state.y,
-        message: " "
+        message: ""
       })
     }
   }
@@ -118,7 +120,7 @@ export default function AppFunctional(props) {
         steps: state.steps + 1,
         x: state.x - 1,
         y: state.y,
-        message: " "
+        message: ""
       })
     }
   }
@@ -157,7 +159,7 @@ export default function AppFunctional(props) {
         steps: state.steps + 1,
         y: state.y - 1,
         x: state.x,
-        message: " "
+        message: ""
       })
     }
   }
@@ -197,7 +199,7 @@ export default function AppFunctional(props) {
         steps: state.steps + 1,
         y: state.y + 1,
         x: state.x,
-        message: " "
+        message: ""
       })
 
     }
@@ -244,7 +246,7 @@ export default function AppFunctional(props) {
     <div id="wrapper" className={props.className}>
       <div className="info">
         <h3 id="coordinates">Coordinates ({state.x}, {state.y})</h3>
-        <h3 id="steps">You moved {state.steps} times</h3>
+        <h3 id="steps">You moved {state.steps} time</h3>
       </div>
       <div id="grid">
         {
