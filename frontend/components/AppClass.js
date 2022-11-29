@@ -29,6 +29,8 @@ export default class AppClass extends React.Component {
       x: 2,
       y: 2
     })
+    const emailInput = document.getElementById('email');
+    emailInput.value = '';
   }
 
   // rightMoveFunction = (index) => {
