@@ -66,42 +66,42 @@ export default class AppClass extends React.Component {
       this.setState({index: 4 + 1})
       this.setState({steps: this.state.steps + 1})
       this.setState({x: this.state.x + 1})
-      this.setState({message: " "})
+      this.setState({message: ""})
     }
 
     if(this.state.index === 0){
       this.setState({index: 0 + 1})
       this.setState({steps: this.state.steps + 1})
       this.setState({x: this.state.x + 1})
-      this.setState({message: " "})
+      this.setState({message: ""})
     }
 
     if(this.state.index === 1){
       this.setState({index: 1 + 1})
       this.setState({steps: this.state.steps + 1})
       this.setState({x: this.state.x + 1})
-      this.setState({message: " "})
+      this.setState({message: ""})
     }
 
     if(this.state.index === 3){
       this.setState({index: 3 + 1})
       this.setState({steps: this.state.steps + 1})
       this.setState({x: this.state.x + 1})
-      this.setState({message: " "})
+      this.setState({message: ""})
     }
 
     if(this.state.index === 6){
       this.setState({index: 6 + 1})
       this.setState({steps: this.state.steps + 1})
       this.setState({x: this.state.x + 1})
-      this.setState({message: " "})
+      this.setState({message: ""})
     }
 
     if(this.state.index === 7){
       this.setState({index: 7 + 1})
       this.setState({steps: this.state.steps + 1})
       this.setState({x: this.state.x + 1})
-      this.setState({message: " "})
+      this.setState({message: ""})
     }
   }
 
@@ -288,7 +288,7 @@ export default class AppClass extends React.Component {
       <div id="wrapper" className={className}>
         <div className="info">
           <h3 id="coordinates">Coordinates ({x}, {y})</h3>
-          <h3 id="steps">You moved {steps} time</h3>
+          <h3 id="steps">You moved {steps} times</h3>
         </div>
         <div id="grid">
           {

@@ -211,7 +211,7 @@ export default function AppFunctional(props) {
       steps: state.steps,
       y: state.y,
       x: state.x,
-      message: " ",
+      message: "",
       email: evt.target.value
     })
   }
@@ -246,7 +246,7 @@ export default function AppFunctional(props) {
     <div id="wrapper" className={props.className}>
       <div className="info">
         <h3 id="coordinates">Coordinates ({state.x}, {state.y})</h3>
-        <h3 id="steps">You moved {state.steps} time</h3>
+        <h3 id="steps">You moved {state.steps} times</h3>
       </div>
       <div id="grid">
         {
