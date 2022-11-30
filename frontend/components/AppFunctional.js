@@ -23,8 +23,6 @@ export default function AppFunctional(props) {
       x: 2,
       y: 2
     })
-    const emailInput = document.getElementById('email');
-    emailInput.value = '';
   }
 
   // rightMoveFunction = (index) => {
@@ -48,6 +46,7 @@ export default function AppFunctional(props) {
   const rightMove = () => {
     if (state.index === 2) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -57,6 +56,7 @@ export default function AppFunctional(props) {
     }
     else if (state.index === 5) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -66,6 +66,7 @@ export default function AppFunctional(props) {
     }
     else if (state.index === 8) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -76,6 +77,7 @@ export default function AppFunctional(props) {
 
     else {
       setState({
+        ...state,
         index: state.index + 1,
         steps: state.steps + 1,
         x: state.x + 1,
@@ -88,6 +90,7 @@ export default function AppFunctional(props) {
   const leftMove = () => {
     if (state.index === 0) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -97,6 +100,7 @@ export default function AppFunctional(props) {
     }
     else if (state.index === 3) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -106,6 +110,7 @@ export default function AppFunctional(props) {
     }
     else if (state.index === 6) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -116,6 +121,7 @@ export default function AppFunctional(props) {
 
     else {
       setState({
+        ...state,
         index: state.index - 1,
         steps: state.steps + 1,
         x: state.x - 1,
@@ -128,6 +134,7 @@ export default function AppFunctional(props) {
   const upMove = () => {
     if (state.index === 0) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -137,6 +144,7 @@ export default function AppFunctional(props) {
     }
     else if (state.index === 1) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -146,6 +154,7 @@ export default function AppFunctional(props) {
     }
     else if (state.index === 2) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -155,6 +164,7 @@ export default function AppFunctional(props) {
     }
     else {
       setState({
+        ...state,
         index: state.index - 3,
         steps: state.steps + 1,
         y: state.y - 1,
@@ -167,6 +177,7 @@ export default function AppFunctional(props) {
   const downMove = () => {
     if (state.index === 6) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -176,6 +187,7 @@ export default function AppFunctional(props) {
     }
     else if (state.index === 7) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -185,6 +197,7 @@ export default function AppFunctional(props) {
     }
     else if (state.index === 8) {
       setState({
+        ...state,
         index: state.index,
         steps: state.steps,
         y: state.y,
@@ -195,6 +208,7 @@ export default function AppFunctional(props) {
 
     else {
       setState({
+        ...state,
         index: state.index + 3,
         steps: state.steps + 1,
         y: state.y + 1,
@@ -207,11 +221,7 @@ export default function AppFunctional(props) {
 
   const onChange = (evt) => {
     setState({
-      index: state.index,
-      steps: state.steps,
-      y: state.y,
-      x: state.x,
-      message: "",
+      ...state,
       email: evt.target.value
     })
   }
@@ -233,12 +243,14 @@ export default function AppFunctional(props) {
           steps: state.steps,
           y: state.y,
           x: state.x,
-          message: res.data.message
+          message: res.data.message,
+          email: ''
         });
-        const emailInput = document.getElementById('email');
-        emailInput.value = '';
       })
-      .catch(err => console.error(err));
+      .catch(err => setState({
+        ...state,
+        message: err.response.data.message
+      }));
   }
 
 
@@ -246,7 +258,7 @@ export default function AppFunctional(props) {
     <div id="wrapper" className={props.className}>
       <div className="info">
         <h3 id="coordinates">Coordinates ({state.x}, {state.y})</h3>
-        <h3 id="steps">You moved {state.steps} times</h3>
+        <h3 id="steps">You moved {state.steps} {`time${state.steps !== 1 ? "s" : ""}`}</h3>
       </div>
       <div id="grid">
         {
@@ -268,7 +280,7 @@ export default function AppFunctional(props) {
         <button id="reset" onClick={reset}>reset</button>
       </div>
       <form onSubmit={onSubmit}>
-        <input id="email" type="email" placeholder="type email" onChange={onChange}></input>
+        <input id="email" placeholder="type email" onChange={onChange} value={state.email}></input>
         <input id="submit" type="submit" onSubmit={onSubmit}></input>
       </form>
     </div>

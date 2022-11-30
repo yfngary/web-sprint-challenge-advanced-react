@@ -259,8 +259,11 @@ export default class AppClass extends React.Component {
   }
 
   onChange = (evt) => {
-    this.setState({ email: evt.target.value })
+    this.setState({ 
+      ...this.state,
+      email: evt.target.value })
   }
+
 
   onSubmit = (evt) => {
     // Use a POST request to send a payload to the server.
@@ -274,21 +277,27 @@ export default class AppClass extends React.Component {
 
     axios.post("http://localhost:9000/api/result", userData)
       .then(res => {
-        this.setState({message: res.data.message});
-        const emailInput = document.getElementById('email');
-        emailInput.value = '';
+        this.setState({
+          ...this.state,
+          email: '',
+          message: res.data.message});
       })
-      .catch(err => console.error(err));
+      .catch(err => this.setState({
+        ...this.state,
+        message: err.response.data.message
+      }))
   }
+
+ 
 
   render() {
     const { className } = this.props
-    const { message, email, index, steps, x, y } = this.state;
+    const { message, email, index, steps, x, y, stepsMessage1 } = this.state;
     return (
       <div id="wrapper" className={className}>
         <div className="info">
           <h3 id="coordinates">Coordinates ({x}, {y})</h3>
-          <h3 id="steps">You moved {steps} times</h3>
+          <h3 id="steps">You moved {steps} {`time${steps !== 1 ? "s" : ""}`}</h3>
         </div>
         <div id="grid">
           {
@@ -310,7 +319,7 @@ export default class AppClass extends React.Component {
           <button id="reset" onClick={this.reset}>reset</button>
         </div>
         <form onSubmit={this.onSubmit}>
-          <input id="email" type="email" placeholder="type email" onChange={this.onChange}></input>
+          <input id="email" value={this.state.email} placeholder="type email" onChange={this.onChange}></input>
           <input id="submit" type="submit" onSubmit={this.onSubmit}></input>
         </form>
       </div>

@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom'
 import AppClass from './components/AppClass'
 import AppFunctional from './components/AppFunctional'
-import './styles/reset.css'
-import './styles/styles.css'
+// import './styles/reset.css'
+// import './styles/styles.css'
 
 const container = document.getElementById('root')
 const root = createRoot(container)
